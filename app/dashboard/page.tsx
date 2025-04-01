@@ -12,7 +12,14 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function Dashboard() {
   const { user, logout } = useAuth();
   const router = useRouter();
-  const [files, setFiles] = useState<any[]>([]);
+  interface File {
+    id: string;
+    name: string;
+    size: number;
+    type: string;
+  }
+
+  const [files, setFiles] = useState<File[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

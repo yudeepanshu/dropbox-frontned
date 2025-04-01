@@ -19,8 +19,12 @@ export default function Login() {
     try {
       await login(email, password);
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err.message || "Login failed");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Login failed");
+      }
     }
   };
 
@@ -34,7 +38,7 @@ export default function Login() {
         <Button fullWidth variant="contained" color="primary" type="submit" sx={{ mt: 2 }}>Login</Button>
       </form>
       <Typography align="center" sx={{ mt: 2 }}>
-        Don't have an account? <a href="/signup">Sign Up</a>
+        Don&apos;t have an account? <a href="/signup">Sign Up</a>
       </Typography>
     </Container>
   );

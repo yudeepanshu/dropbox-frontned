@@ -19,8 +19,12 @@ export default function Signup() {
     try {
       await signup(email, password);
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err.message || "Signup failed");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Signup failed");
+      }
     }
   };
 

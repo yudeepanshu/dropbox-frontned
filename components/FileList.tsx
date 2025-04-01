@@ -4,7 +4,7 @@ import { Download, Delete, Visibility } from "@mui/icons-material";
 import { useAuth } from "@/components/context/AuthContext";
 
 interface FileListProps {
-  files: any[];
+  files: { id: string; name: string; size: number }[];
   onRefresh: () => void;
 }
 
