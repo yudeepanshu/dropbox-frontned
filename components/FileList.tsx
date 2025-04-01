@@ -4,7 +4,7 @@ import { Download, Delete, Visibility } from "@mui/icons-material";
 import { useAuth } from "@/components/context/AuthContext";
 
 interface FileListProps {
-  files: { id: string; name: string; size: number }[];
+  files: { id: string; name: string; size: number }[] | null | undefined;
   onRefresh: () => void;
 }
 
@@ -76,7 +76,7 @@ export default function FileList({ files, onRefresh }: FileListProps) {
 
   return (
     <Box sx={{ mt: 2 }}>
-      {files.length === 0 ? (
+      {(!files || files.length === 0) ? (
         <Typography>No files found.</Typography>
       ) : (
         files.map((file) => {
